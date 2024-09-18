@@ -1,0 +1,12 @@
+import { object, string, number, boolean } from "yup";
+
+export const {{actualName}}Schema = object({
+  name: string().required("Name is required."),
+  
+  // Add more fields as needed, for example:
+  // age: number().required("Age is required.").min(0, "Age must be a positive number."),
+  // email: string().email("Must be a valid email address.").required("Email is required."),
+  // isActive: boolean().default(true),
+  
+  // Customize validation messages and rules according to your needs
+});

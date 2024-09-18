@@ -1,0 +1,23 @@
+import { {{Model}} } from "@prisma/client";
+
+export const {{actualName}}Response = (data: {{Model}}[] | {{Model}}) => {
+  if (Array.isArray(data)) {
+    return data.map((item) => formatResponse(item));
+  }
+
+  return formatResponse(data);
+};
+
+const formatResponse = (data: {{Model}}) => {
+  return {
+    // Customize the fields to be returned in the response
+    id: data.id,
+    name: data.name,
+    // Add additional fields as needed, for example:
+    // createdAt: data.createdAt,
+    // updatedAt: data.updatedAt,
+    // email: data.email,
+    
+    // Customize or format the fields as needed
+  };
+};

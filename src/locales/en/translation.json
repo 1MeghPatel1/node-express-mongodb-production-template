@@ -1,0 +1,45 @@
+{
+  "pong": "pong",
+  "user": {
+    "user_already_exists": "User with this email already exists",
+    "user_created": "account created",
+    "wrong_email_or_password": "User with this email and password does not exist",
+    "logged_in": "Logged In successfully",
+    "logged_out": "Logged Out successfully",
+    "invalid_reset_link": "Invalid reset link",
+    "link_expired": "Reset password link has expired",
+    "reset_password_message": "Reset password link has been sent to your email",
+    "password_reset_success": "Password has been reset successfully",
+    "notification_deleted": "Notifications cleared successfully",
+    "single_notification_deleted": "Notification cleared successfully",
+    "apple_error": "There was an error connecting to the Apple ID server. Go to Setting -> Password & Security->App using your Apple ID->Application->Stop using apple ID",
+    "forgot_password_reset_link": "Forgot password reset link sent to your email",
+    "verification_mail_send": "Verification mail",
+    "invalid_verify_link": "Invalid verification link",
+    "user_verified": "User verified successfully",
+    "user_not_verified": "User not verified"
+  },
+  "device": {
+    "device_created": "Device created",
+    "device_deleted": "Device deleted",
+    "device_updated": "Device updated",
+    "device_not_found": "Device not found"
+  },
+  "website": {
+    "website_already_exists": "Website already exists",
+    "website_not_found": "Website not found",
+    "website_deleted": "Website deleted"
+  },
+  "operation": {
+    "created": "Operation created",
+    "made_default": "Operation made :{{operation}}",
+    "not_found": "Operation not found"
+  },
+  "crud": {
+    "created": "{{model}} created",
+    "updated": "{{model}} updated",
+    "deleted": "{{model}} deleted",
+    "not_found": "{{model}} not found",
+    "already_exists": "{{model}} already exists"
+  }
+}

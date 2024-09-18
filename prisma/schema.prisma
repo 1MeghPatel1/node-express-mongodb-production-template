@@ -1,0 +1,95 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DB_CONNECTION_STRING")
+}
+
+model User {
+  id                  String       @id @default(auto()) @map("_id") @db.ObjectId
+  firstName           String
+  lastName            String
+  email               String       @unique
+  password            String?
+  forgotPasswordToken String?
+  socialId            String?      @unique
+  socialType          SocialTypes?
+  status              Status       @default(ACTIVE)
+  verified            Boolean      @default(false)
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+  deletedAt           DateTime?
+
+  devices       Device[] // Relation with Device model
+  notifications Notification[] // Relation with Notification model
+
+  @@map("users")
+}
+
+model Device {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String    @db.ObjectId
+  fcmToken  String?
+  authToken String    @unique
+  device    Devices
+  metaData  Json?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  user User @relation(fields: [userId], references: [id]) // Relation with User model
+
+  @@map("devices")
+}
+
+model AppleDetail {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  firstName String
+  lastName  String
+  socialId  String   @unique
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("apple_details")
+}
+
+model Notification {
+  id        String            @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String            @db.ObjectId
+  title     String
+  body      String
+  data      Json?
+  type      NotificationTypes
+  readAt    DateTime?
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  user User @relation(fields: [userId], references: [id]) // Relation with User model
+
+  @@map("notifications")
+}
+
+enum Devices {
+  IOS
+  ANDROID
+  WEB
+}
+
+enum NotificationTypes {
+  LoggedOut
+}
+
+enum SocialTypes {
+  GOOGLE
+  GITHUB
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}

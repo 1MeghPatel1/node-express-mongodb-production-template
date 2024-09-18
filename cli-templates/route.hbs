@@ -1,0 +1,36 @@
+import { Router } from "express";
+import { {{actualName}}Controller } from "../../app/http/controllers/{{actualName}}Controller";
+
+const router = Router();
+
+/**
+ * Route to get a specific {{actualName}} by ID.
+ * Example: GET /{{actualName}}/:id
+ */
+router.get("/:id", {{actualName}}Controller.get);
+
+/**
+ * Route to get all instances of {{actualName}}.
+ * Example: GET /{{actualName}}
+ */
+router.get("/", {{actualName}}Controller.getAll);
+
+/**
+ * Route to create a new {{actualName}}.
+ * Example: POST /{{actualName}}
+ */
+router.post("/", {{actualName}}Controller.create);
+
+/**
+ * Route to update an existing {{actualName}} by ID.
+ * Example: PUT /{{actualName}}/:id
+ */
+router.put("/:id", {{actualName}}Controller.update);
+
+/**
+ * Route to delete an existing {{actualName}} by ID.
+ * Example: DELETE /{{actualName}}/:id
+ */
+router.delete("/:id", {{actualName}}Controller.delete);
+
+export default router;

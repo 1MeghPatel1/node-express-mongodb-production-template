@@ -1,0 +1,89 @@
+import { Prisma, {{capitalizedName}} } from "@prisma/client";
+import prisma from "../providers/db"; // Importing the centralized PrismaClient instance
+
+export class {{capitalizedName}}Service {
+
+    /**
+     * Stores a new {{capitalizedName}} in the database.
+     * @param data - The data to be stored.
+     * @returns The created {{capitalizedName}} object or an error.
+     */
+    public static async store(data: Omit<Prisma.{{capitalizedName}}CreateInput, 'id'>): Promise<{ success: boolean; data?: {{capitalizedName}}; error?: string }> {
+        try {
+            const createdData = await prisma.{{actualName}}.create({
+                data,
+            });
+            return { success: true, data: createdData };
+        } catch (error) {
+            console.error("[{{capitalizedName}}Service.store] Error:", error);
+            return { success: false, error: "Failed to store {{capitalizedName}}." };
+        }
+    }
+
+    /**
+     * Retrieves a {{capitalizedName}} by its ID.
+     * @param id - The ID of the {{capitalizedName}} to retrieve.
+     * @returns The {{capitalizedName}} object or null if not found.
+     */
+    public static async findById(id: string): Promise<{ success: boolean; data?: {{capitalizedName}} | null; error?: string }> {
+        try {
+            const data = await prisma.{{actualName}}.findUnique({
+                where: { id },
+            });
+            return { success: true, data };
+        } catch (error) {
+            console.error("[{{capitalizedName}}Service.findById] Error:", error);
+            return { success: false, error: "Failed to retrieve {{capitalizedName}}." };
+        }
+    }
+
+    /**
+     * Retrieves all instances of {{capitalizedName}}.
+     * @returns An array of {{capitalizedName}} objects or an empty array if none are found.
+     */
+    public static async getAll(): Promise<{ success: boolean; data?: {{capitalizedName}}[]; error?: string }> {
+        try {
+            const data = await prisma.{{actualName}}.findMany();
+            return { success: true, data };
+        } catch (error) {
+            console.error("[{{capitalizedName}}Service.getAll] Error:", error);
+            return { success: false, error: "Failed to retrieve {{capitalizedName}}s." };
+        }
+    }
+
+    /**
+     * Updates an existing {{capitalizedName}} in the database.
+     * @param id - The ID of the {{capitalizedName}} to update.
+     * @param data - The new data for the {{capitalizedName}}.
+     * @returns The updated {{capitalizedName}} object or an error.
+     */
+    public static async update(id: string, data: Prisma.{{capitalizedName}}UpdateInput): Promise<{ success: boolean; data?: {{capitalizedName}}; error?: string }> {
+        try {
+            const updatedData = await prisma.{{actualName}}.update({
+                where: { id },
+                data,
+            });
+            return { success: true, data: updatedData };
+        } catch (error) {
+            console.error("[{{capitalizedName}}Service.update] Error:", error);
+            return { success: false, error: "Failed to update {{capitalizedName}}." };
+        }
+    }
+
+    /**
+     * Deletes a {{capitalizedName}} by its ID.
+     * @param id - The ID of the {{capitalizedName}} to delete.
+     * @returns A success message or an error.
+     */
+    public static async delete(id: string): Promise<{ success: boolean; message?: string; error?: string }> {
+        try {
+            await prisma.{{actualName}}.delete({
+                where: { id },
+            });
+            return { success: true, message: "{{capitalizedName}} deleted successfully." };
+        } catch (error) {
+            console.error("[{{capitalizedName}}Service.delete] Error:", error);
+            return { success: false, error: "Failed to delete {{capitalizedName}}." };
+        }
+    }
+}

@@ -1,0 +1,14 @@
+import { Worker, Queue } from "bullmq";
+import { queueConnection } from "../../utils/utils";
+
+export const {{actualName}}Queue = new Queue(
+  "{{actualName}}",
+  queueConnection
+);
+
+const {{actualName}}= async(data:any)=>{
+
+}
+new Worker("{{actualName}}", async (job:any)=>{
+ {{actualName}}(job);
+}, queueConnection);
